@@ -1,4 +1,6 @@
-
+#系统配置
+server:
+  port: 9999
 
 # mongo 配置
 spring:
@@ -7,6 +9,13 @@ spring:
       host: 192.168.0.125
       port: 27017
       database: workflow
+
+# 异步线程池配置
+spring.async:
+  corePoolSize: 10
+  maxPoolSize: 30
+  queueCapacity: 8
+  keepAlive: 60
 
 
 ---
