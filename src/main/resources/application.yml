@@ -17,6 +17,15 @@ spring.async:
   queueCapacity: 8
   keepAlive: 60
 
+notify:
+  telegram:
+    botUserName: xxx
+    token: xxx
+
+proxy:
+  host: 127.0.0.1
+  port: 1080
+
 
 ---
 
