@@ -1,5 +1,6 @@
 package com.mysticenergy.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,8 +10,9 @@ import java.util.List;
  * @Author: wasmir
  * @Date 2018/2/20
  */
-public class Task {
+public class Task implements Serializable{
 
+    private static final long serialVersionUID = 4327921116243685231L;
     /**
      * 任务ID
      */

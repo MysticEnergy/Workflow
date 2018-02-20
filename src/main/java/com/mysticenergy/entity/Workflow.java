@@ -1,5 +1,6 @@
 package com.mysticenergy.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,9 @@ import java.util.List;
  * @Author: wasmir
  * @Date 2018/2/20
  */
-public class Workflow {
+public class Workflow implements Serializable{
+
+    private static final long serialVersionUID = 4872106986832735628L;
     /**
      * 流程ID
      */

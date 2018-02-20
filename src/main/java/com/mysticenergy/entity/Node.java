@@ -1,5 +1,6 @@
 package com.mysticenergy.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,8 +10,9 @@ import java.util.List;
  * @Author: wasmir
  * @Date 2018/2/20
  */
-public class Node {
+public class Node implements Serializable{
 
+    private static final long serialVersionUID = -266979976081873188L;
     /**
      * 节点ID
      */
@@ -94,8 +96,9 @@ public class Node {
         this.relations = relations;
     }
 
-    static class Relation{
+    static class Relation implements Serializable{
 
+        private static final long serialVersionUID = -7734802865746082556L;
         /**
          * 指向的节点id
          */
