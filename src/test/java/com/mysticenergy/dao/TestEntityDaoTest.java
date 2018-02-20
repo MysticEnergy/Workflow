@@ -27,7 +27,7 @@ public class TestEntityDaoTest extends BaseTest {
                 .set_id(UuidGenerator.uuid())
                 .setNames("test");
 
-        testEntityDao.addOne(testEntity);
+        testEntityDao.insert(testEntity);
 
         TestEntity testEntity1 = testEntityDao.findById(testEntity.get_id());
 
