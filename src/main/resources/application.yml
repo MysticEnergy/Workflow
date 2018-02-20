@@ -10,6 +10,18 @@ spring:
       port: 27017
       database: workflow
 
+dyCode:
+  fullPre: com.mysticenergy.command.Dy
+  pre: Dy
+  tail: Command
+  preCode:
+   "package com.mysticenergy.command;\n
+   public class "
+  midCode:
+   " implements Command{\n
+   public void execute() {"
+  tailCode: '}}'
+
 # 异步线程池配置
 spring.async:
   corePoolSize: 10
@@ -25,6 +37,8 @@ notify:
 proxy:
   host: 127.0.0.1
   port: 1080
+
+
 
 
 ---
