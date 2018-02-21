@@ -58,8 +58,11 @@ public class DefaultWorkflowProcessorTest extends BaseTest {
                         .setBounds(Arrays.asList(
                                 new UserInfo.Bound()
                                         .setType("telegram")
-                                        .setKey("428620498"))
-                        )
+                                        .setKey("428620498"),
+                                new UserInfo.Bound()
+                                        .setType("telegram")
+                                        .setKey("523969365")
+                        ))
                         .setWfIds("1"))
         );
     }

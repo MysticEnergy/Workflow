@@ -11,6 +11,7 @@ import com.mysticenergy.wfprocessor.model.NodeProcessorDTO;
 import com.mysticenergy.wfprocessor.nodeprocessor.NodeProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -36,10 +37,14 @@ public class NotifyNodeProcessor implements NodeProcessor {
 
         NotifyService notifyService = getNotifyService(node.getCode());
 
-        notifyService.sendMessage(
-                new NotifyDTO().setUserId(notifyService.getUserId(userInfo))
-                        .setMessage(nodeProcessorDTO.getData().toString())
-        );
+        List<String> keys = notifyService.getUserId(userInfo);
+        String data = nodeProcessorDTO.getData().toString();
+
+        if (!CollectionUtils.isEmpty(keys)) {
+            for (String key : keys) {
+                notifyService.sendMessage(new NotifyDTO().setUserId(key).setMessage(data));
+            }
+        }
 
         return new NodeProcessorDTO().setStatus(true);
     }

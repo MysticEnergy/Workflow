@@ -6,7 +6,9 @@ import com.mysticenergy.entity.UserInfo;
 import com.mysticenergy.notify.model.NotifyDTO;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 通知接口
@@ -31,24 +33,21 @@ public interface NotifyService {
         return getType().equal(notifyType);
     }
 
-    default String getUserId(UserInfo userInfo) {
+    default List<String> getUserId(UserInfo userInfo) {
         if (userInfo == null) {
-            return null;
+            return Collections.emptyList();
         }
 
         List<UserInfo.Bound> boundList = userInfo.getBounds();
 
         if (CollectionUtils.isEmpty(boundList)) {
-            return null;
+            return Collections.emptyList();
         }
 
-        for (UserInfo.Bound bound : boundList) {
-            if (isSupport(bound.getType())) {
-                return bound.getKey();
-            }
-        }
-
-        return null;
+        return boundList.stream()
+                .filter(bound -> isSupport(bound.getType()))
+                .map(UserInfo.Bound::getKey)
+                .collect(Collectors.toList());
     }
 
     /**
