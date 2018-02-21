@@ -26,7 +26,7 @@ public class CommandTest extends BaseTest{
     public void test() throws Exception {
         Node node = new Node();
         node.set_id("123");
-        node.setCode("String a = \"123\";System.out.println(\"Hello World\" + a);\n");
+        node.setCode("String a = \"123\";System.out.println(\"Hello World 你好你好\" + a);\n");
         Node node2 = new Node();
         node2.set_id("12345");
         node2.setCode("System.out.println(\"Hello World2\");\n");

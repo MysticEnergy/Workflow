@@ -42,7 +42,7 @@ public class CommandOperation {
         OperationResult<NULL> or = new OperationResult<>();
         OperationResult orB = runBefore(node);
         try {
-            commandHelper.run(node);
+            //commandHelper.run(node);
         } catch (Exception e) {
             or.setFailed()
                     .setMessage(e.getMessage());
@@ -60,11 +60,11 @@ public class CommandOperation {
         return or;
     }
 
-    public <T> OperationResult<T> runBefore(Node node) {
+    public OperationResult<NULL> runBefore(Node node) {
         return new OperationResult<>();
     }
 
-    public <T> OperationResult<T> runAfter(Node node) {
+    public OperationResult<NULL> runAfter(Node node) {
         return new OperationResult<>();
     }
 }

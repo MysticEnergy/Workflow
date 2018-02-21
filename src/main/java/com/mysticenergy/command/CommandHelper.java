@@ -1,8 +1,10 @@
 package com.mysticenergy.command;
 
+import com.alibaba.fastjson.JSONObject;
 import com.mysticenergy.command.runtime.DynamicEngine;
 import com.mysticenergy.operation.OperationResult;
 import com.mysticenergy.entity.Node;
+import com.mysticenergy.wfprocessor.model.NodeProcessorDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import sun.misc.IOUtils;
@@ -68,15 +70,15 @@ public class CommandHelper {
     /**
      * 编译并运行node中的code
      *
-     * @param node
+     * @param nodeDTO
      * @throws Exception
      */
-    public void run(Node node) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public JSONObject run(NodeProcessorDTO nodeDTO) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        Node node = nodeDTO.getNode();
         String fullClassName = fullPreClassName + node.get_id() + tailClassName;
         Class clazz = null;
         clazz = DynamicEngine.getInstance().getDynamicClassLoader().loadClass(fullClassName);
         Command command = (Command) clazz.newInstance();
-        command.execute();
-
+        return command.execute(nodeDTO.getData());
     }
 }

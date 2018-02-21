@@ -96,7 +96,7 @@ public class Node implements Serializable{
         this.relations = relations;
     }
 
-    static class Relation implements Serializable{
+    public static class Relation implements Serializable{
 
         private static final long serialVersionUID = -7734802865746082556L;
         /**

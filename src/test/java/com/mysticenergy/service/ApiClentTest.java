@@ -28,7 +28,7 @@ public class ApiClentTest extends BaseTest{
     public void test(){
         String url = "https://api.seniverse.com/v3/weather/now.json?key={key}&location={location}";
         Map<String,String> map = new HashMap<>();
-        map.put("key","xxxxxxxxxxx");
+        map.put("key","auvelrhcvsizxt9k");
         map.put("location","beijing");
         String method = "get";
         Assert.assertNotNull(apiClent.getJson(url,map,method));
