@@ -8,6 +8,15 @@ public class WfBaseException extends RuntimeException {
 
     private String key;
 
+    public WfBaseException(String key) {
+        this.key = key;
+    }
+
+    public WfBaseException(String key, Exception e) {
+        super(e.getMessage(), e.getCause());
+        this.key = key;
+    }
+
     public WfBaseException(String key, String message, Throwable cause) {
         super(message, cause);
         this.key = key;

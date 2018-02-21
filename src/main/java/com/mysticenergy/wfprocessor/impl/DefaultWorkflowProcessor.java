@@ -1,13 +1,17 @@
 package com.mysticenergy.wfprocessor.impl;
 
+import com.mysticenergy.common.exception.WfBaseException;
+import com.mysticenergy.common.exception.WfInternalException;
 import com.mysticenergy.entity.Workflow;
 import com.mysticenergy.wfprocessor.WorkflowProcessor;
+import com.mysticenergy.wfprocessor.model.WorkflowProcessorDTO;
 import com.mysticenergy.wfprocessor.nodeprocessor.NodeProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by 书生 on 2018/2/21.
@@ -17,11 +21,6 @@ public class DefaultWorkflowProcessor implements WorkflowProcessor {
 
     @Autowired(required = false)
     private List<NodeProcessor> nodeProcessorList;
-
-    @Override
-    public void execute(Workflow workflow) {
-
-    }
 
     protected NodeProcessor getProcessor(String nodeType) {
         if (CollectionUtils.isEmpty(nodeProcessorList)) {
@@ -37,4 +36,7 @@ public class DefaultWorkflowProcessor implements WorkflowProcessor {
         return null;
     }
 
+    @Override
+    public void execute(WorkflowProcessorDTO workflowProcessorDTO) {
+    }
 }
