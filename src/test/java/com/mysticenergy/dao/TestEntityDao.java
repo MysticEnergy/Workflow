@@ -1,6 +1,6 @@
 package com.mysticenergy.dao;
 
-import com.mysticenergy.common.BaseDao;
+import com.mysticenergy.common.dao.BaseDao;
 import com.mysticenergy.entity.TestEntity;
 import org.springframework.stereotype.Repository;
 

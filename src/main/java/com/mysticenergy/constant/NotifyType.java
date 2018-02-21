@@ -10,5 +10,8 @@ package com.mysticenergy.constant;
 public enum NotifyType {
     TELEGRAM,
     QQ,
-    WX
+    WX;
+
+    private String name;
+
 }

@@ -1,4 +1,4 @@
-package com.mysticenergy.common;
+package com.mysticenergy.common.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
