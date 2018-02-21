@@ -23,8 +23,8 @@ public interface NotifyService {
      * @param notifyType 指定类型
      * @return t/f
      */
-    default boolean isSupport(NotifyType notifyType) {
-        return getType() == notifyType;
+    default boolean isSupport(String notifyType) {
+        return getType().equal(notifyType);
     }
 
     /**

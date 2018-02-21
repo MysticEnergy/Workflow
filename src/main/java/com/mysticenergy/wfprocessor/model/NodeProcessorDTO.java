@@ -2,6 +2,7 @@ package com.mysticenergy.wfprocessor.model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mysticenergy.entity.Node;
+import com.mysticenergy.entity.UserInfo;
 
 /**
  * 节点执行类数据传输对象
@@ -23,6 +24,11 @@ public class NodeProcessorDTO {
      * 节点产生的结果
      */
     private boolean status;
+
+    /**
+     * 用户数据
+     */
+    private UserInfo userInfo;
 
     public Node getNode() {
         return node;
@@ -48,6 +54,15 @@ public class NodeProcessorDTO {
 
     public NodeProcessorDTO setStatus(boolean status) {
         this.status = status;
+        return this;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public NodeProcessorDTO setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
         return this;
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
  * @Author: wasmir
  * @Date 2018/2/20
  */
-public class UserInfo implements Serializable{
+public class UserInfo implements Serializable {
 
     private static final long serialVersionUID = 3793461291749105725L;
 
@@ -26,7 +26,7 @@ public class UserInfo implements Serializable{
 
     /**
      * 用户所拥有的流程
-     *  拥有 -> 创建者/使用者
+     * 拥有 -> 创建者/使用者
      */
     public String wfIds;
 
@@ -35,13 +35,49 @@ public class UserInfo implements Serializable{
      */
     public List<Bound> bounds;
 
-    static class Bound implements Serializable{
+    public String get_id() {
+        return _id;
+    }
+
+    public UserInfo set_id(String _id) {
+        this._id = _id;
+        return this;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public UserInfo setUserName(String userName) {
+        this.userName = userName;
+        return this;
+    }
+
+    public String getWfIds() {
+        return wfIds;
+    }
+
+    public UserInfo setWfIds(String wfIds) {
+        this.wfIds = wfIds;
+        return this;
+    }
+
+    public List<Bound> getBounds() {
+        return bounds;
+    }
+
+    public UserInfo setBounds(List<Bound> bounds) {
+        this.bounds = bounds;
+        return this;
+    }
+
+    public static class Bound implements Serializable {
 
         private static final long serialVersionUID = 8358807743944487637L;
 
         /**
          * 绑定的类型
-         *  eg:telegram
+         * eg:telegram
          */
         public String type;
 
@@ -49,5 +85,23 @@ public class UserInfo implements Serializable{
          * 该类型对应的id
          */
         public String key;
+
+        public String getType() {
+            return type;
+        }
+
+        public Bound setType(String type) {
+            this.type = type;
+            return this;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public Bound setKey(String key) {
+            this.key = key;
+            return this;
+        }
     }
 }
