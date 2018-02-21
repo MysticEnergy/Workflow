@@ -1,6 +1,5 @@
 package com.mysticenergy.wfprocessor;
 
-import com.mysticenergy.entity.Workflow;
 import com.mysticenergy.wfprocessor.model.WorkflowProcessorDTO;
 
 /**

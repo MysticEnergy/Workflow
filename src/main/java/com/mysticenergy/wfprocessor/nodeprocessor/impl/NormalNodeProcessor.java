@@ -7,7 +7,10 @@ import com.mysticenergy.constant.NodeType;
 import com.mysticenergy.entity.Node;
 import com.mysticenergy.wfprocessor.model.NodeProcessorDTO;
 import com.mysticenergy.wfprocessor.nodeprocessor.NodeProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Name: NormalNodeProcessor
@@ -16,7 +19,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Author: wasmir
  * @Date 2018/2/21
  */
-public class NormalNodeProcessor implements NodeProcessor{
+@Service
+public class NormalNodeProcessor implements NodeProcessor {
+
+    private static final Logger logger = LoggerFactory.getLogger(NormalNodeProcessor.class);
 
     @Autowired
     private CommandHelper commandHelper;
@@ -28,13 +34,17 @@ public class NormalNodeProcessor implements NodeProcessor{
 
     @Override
     public NodeProcessorDTO execute(NodeProcessorDTO nodeProcessorDTO) {
-        Node node = nodeProcessorDTO.getNode();
         try {
-            JSONObject result = commandHelper.run(nodeProcessorDTO);
-        }catch (Exception e){
-            throw new WfBaseException("key",e);
+            commandHelper.compile(nodeProcessorDTO.getNode());
+            commandHelper.run(nodeProcessorDTO);
+
+//            if (logger.isDebugEnabled()) {
+//                logger.debug("执行结果:{}", result);
+//            }
+        } catch (Exception e) {
+            throw new WfBaseException("key", e);
         }
 
-        return null;
+        return nodeProcessorDTO.setStatus(true);
     }
 }

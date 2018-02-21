@@ -11,4 +11,10 @@ public interface ExceptionKeyConstant {
 
     }
 
+    class Workflow {
+
+        public static final String NODE_TYPE_NOT_FOUND = "node.type.not.found";
+
+    }
+
 }

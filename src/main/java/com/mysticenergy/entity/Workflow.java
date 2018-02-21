@@ -10,7 +10,7 @@ import java.util.List;
  * @Author: wasmir
  * @Date 2018/2/20
  */
-public class Workflow implements Serializable{
+public class Workflow implements Serializable {
 
     private static final long serialVersionUID = 4872106986832735628L;
     /**
@@ -32,23 +32,26 @@ public class Workflow implements Serializable{
         return _id;
     }
 
-    public void set_id(String _id) {
+    public Workflow set_id(String _id) {
         this._id = _id;
+        return this;
     }
 
     public String getWfName() {
         return wfName;
     }
 
-    public void setWfName(String wfName) {
+    public Workflow setWfName(String wfName) {
         this.wfName = wfName;
+        return this;
     }
 
     public List<Node> getNodes() {
         return nodes;
     }
 
-    public void setNodes(List<Node> nodes) {
+    public Workflow setNodes(List<Node> nodes) {
         this.nodes = nodes;
+        return this;
     }
 }

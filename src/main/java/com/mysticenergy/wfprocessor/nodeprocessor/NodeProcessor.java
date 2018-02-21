@@ -18,26 +18,6 @@ public interface NodeProcessor {
         return getNodeType() != null && getNodeType().equal(nodeType);
     }
 
-    default String getUserId(UserInfo userInfo) {
-        if (userInfo == null) {
-            return null;
-        }
-
-        List<UserInfo.Bound> boundList = userInfo.getBounds();
-
-        if (CollectionUtils.isEmpty(boundList)) {
-            return null;
-        }
-
-        for (UserInfo.Bound bound : boundList) {
-            if (isSupport(bound.getType())) {
-                return bound.getKey();
-            }
-        }
-
-        return null;
-    }
-
     NodeProcessorDTO execute(NodeProcessorDTO nodeProcessorDTO);
 
 }

@@ -34,12 +34,14 @@ public class NotifyNodeProcessor implements NodeProcessor {
         Node node = nodeProcessorDTO.getNode();
         UserInfo userInfo = nodeProcessorDTO.getUserInfo();
 
-        getNotifyService(node.getCode()).sendMessage(
-                new NotifyDTO().setUserId(getUserId(userInfo))
+        NotifyService notifyService = getNotifyService(node.getCode());
+
+        notifyService.sendMessage(
+                new NotifyDTO().setUserId(notifyService.getUserId(userInfo))
                         .setMessage(nodeProcessorDTO.getData().toString())
         );
 
-        return null;
+        return new NodeProcessorDTO().setStatus(true);
     }
 
     protected NotifyService getNotifyService(String notifyType) {

@@ -10,7 +10,7 @@ import java.util.List;
  * @Author: wasmir
  * @Date 2018/2/20
  */
-public class Node implements Serializable{
+public class Node implements Serializable {
 
     private static final long serialVersionUID = -266979976081873188L;
     /**
@@ -25,23 +25,23 @@ public class Node implements Serializable{
 
     /**
      * 节点类型
-     *  （normal,logic,notify）
+     * （normal,logic,notify）
      */
     public String type;
 
     /**
      * 节点代码
-     *  对应不同的类型拥有不同的代码
-     *  对于normal节点，为java代码段
-     *  对于logic节点，为ENUM，eg: AND,OR
-     *  对于notify节点，为ENUM，eg：telegram
+     * 对应不同的类型拥有不同的代码
+     * 对于normal节点，为java代码段
+     * 对于logic节点，为ENUM，eg: AND,OR
+     * 对于notify节点，为ENUM，eg：telegram
      */
     public String code;
 
     /**
      * 指向该节点的relation数量
      */
-    public String preNum;
+    public int preNum;
 
     /**
      * 该节点指出的relation列表
@@ -52,51 +52,57 @@ public class Node implements Serializable{
         return _id;
     }
 
-    public void set_id(String _id) {
+    public Node set_id(String _id) {
         this._id = _id;
+        return this;
     }
 
     public String getNodeName() {
         return nodeName;
     }
 
-    public void setNodeName(String nodeName) {
+    public Node setNodeName(String nodeName) {
         this.nodeName = nodeName;
+        return this;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public Node setType(String type) {
         this.type = type;
+        return this;
     }
 
     public String getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public Node setCode(String code) {
         this.code = code;
+        return this;
     }
 
-    public String getPreNum() {
+    public int getPreNum() {
         return preNum;
     }
 
-    public void setPreNum(String preNum) {
+    public Node setPreNum(int preNum) {
         this.preNum = preNum;
+        return this;
     }
 
     public List<Relation> getRelations() {
         return relations;
     }
 
-    public void setRelations(List<Relation> relations) {
+    public Node setRelations(List<Relation> relations) {
         this.relations = relations;
+        return this;
     }
 
-    public static class Relation implements Serializable{
+    public static class Relation implements Serializable {
 
         private static final long serialVersionUID = -7734802865746082556L;
         /**
@@ -107,22 +113,24 @@ public class Node implements Serializable{
         /**
          * 该relation生效时，节点的值
          */
-        public String result;
+        public boolean result;
 
         public String getTo() {
             return to;
         }
 
-        public void setTo(String to) {
+        public Relation setTo(String to) {
             this.to = to;
+            return this;
         }
 
-        public String getResult() {
+        public boolean getResult() {
             return result;
         }
 
-        public void setResult(String result) {
+        public Relation setResult(boolean result) {
             this.result = result;
+            return this;
         }
     }
 }

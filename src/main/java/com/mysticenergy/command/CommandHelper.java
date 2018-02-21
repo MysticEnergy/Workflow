@@ -73,12 +73,12 @@ public class CommandHelper {
      * @param nodeDTO
      * @throws Exception
      */
-    public JSONObject run(NodeProcessorDTO nodeDTO) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public void run(NodeProcessorDTO nodeDTO) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Node node = nodeDTO.getNode();
         String fullClassName = fullPreClassName + node.get_id() + tailClassName;
         Class clazz = null;
         clazz = DynamicEngine.getInstance().getDynamicClassLoader().loadClass(fullClassName);
         Command command = (Command) clazz.newInstance();
-        return command.execute(nodeDTO.getData());
+        command.execute();
     }
 }

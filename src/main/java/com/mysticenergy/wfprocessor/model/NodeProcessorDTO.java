@@ -48,7 +48,7 @@ public class NodeProcessorDTO {
         return this;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -65,4 +65,6 @@ public class NodeProcessorDTO {
         this.userInfo = userInfo;
         return this;
     }
+
+
 }
