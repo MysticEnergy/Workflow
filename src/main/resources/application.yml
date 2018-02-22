@@ -16,10 +16,11 @@ dyCode:
   tail: Command
   preCode:
    "package com.mysticenergy.command;\n
+   import com.alibaba.fastjson.JSONObject;
    public class "
   midCode:
    " implements Command{\n
-   public void execute() {"
+   public JSONObject execute(JSONObject data) {"
   tailCode: '}}'
 
 # 异步线程池配置

@@ -1,5 +1,7 @@
 package com.mysticenergy.command;
 
+import com.alibaba.fastjson.JSONObject;
+
 /**
  * Name: Command
  * Desc: 动态代码段接口
@@ -8,5 +10,5 @@ package com.mysticenergy.command;
  * @Date 2018/2/20
  */
 public interface Command {
-    void execute();
+    JSONObject execute(JSONObject jsonObject);
 }

@@ -1,10 +1,8 @@
 package com.mysticenergy.wfprocessor.nodeprocessor.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.mysticenergy.command.CommandHelper;
 import com.mysticenergy.common.exception.WfBaseException;
 import com.mysticenergy.constant.NodeType;
-import com.mysticenergy.entity.Node;
 import com.mysticenergy.wfprocessor.model.NodeProcessorDTO;
 import com.mysticenergy.wfprocessor.nodeprocessor.NodeProcessor;
 import org.slf4j.Logger;
@@ -35,7 +33,7 @@ public class NormalNodeProcessor implements NodeProcessor {
     @Override
     public NodeProcessorDTO execute(NodeProcessorDTO nodeProcessorDTO) {
         try {
-            commandHelper.compile(nodeProcessorDTO.getNode());
+            commandHelper.compile(nodeProcessorDTO);
             commandHelper.run(nodeProcessorDTO);
 
 //            if (logger.isDebugEnabled()) {

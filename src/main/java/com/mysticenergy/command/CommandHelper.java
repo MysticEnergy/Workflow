@@ -66,19 +66,37 @@ public class CommandHelper {
         return null;
     }
 
+    public Class compile(NodeProcessorDTO nodeProcessorDTO){
+        Node node = nodeProcessorDTO.getNode();
+        return compile(node);
+    }
+
 
     /**
-     * 编译并运行node中的code
+     * 获取dto中的code以及node,返回经过code处理的data
      *
      * @param nodeDTO
      * @throws Exception
      */
-    public void run(NodeProcessorDTO nodeDTO) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public JSONObject run(NodeProcessorDTO nodeDTO) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Node node = nodeDTO.getNode();
         String fullClassName = fullPreClassName + node.get_id() + tailClassName;
         Class clazz = null;
         clazz = DynamicEngine.getInstance().getDynamicClassLoader().loadClass(fullClassName);
         Command command = (Command) clazz.newInstance();
-        command.execute();
+        return command.execute(nodeDTO.getData());
+    }
+
+    /**
+     * 获取dto中的code以及data，运行之后将dto中的data更新并返回
+     * @param nodeProcessorDTO
+     * @return
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws ClassNotFoundException
+     */
+    public NodeProcessorDTO runForDTO(NodeProcessorDTO nodeProcessorDTO) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
+        JSONObject ret = run(nodeProcessorDTO);
+        return nodeProcessorDTO.setData(ret);
     }
 }
