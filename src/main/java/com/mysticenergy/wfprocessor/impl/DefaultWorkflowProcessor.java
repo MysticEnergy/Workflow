@@ -45,14 +45,14 @@ public class DefaultWorkflowProcessor implements WorkflowProcessor {
         throw new WfBaseException(ExceptionKeyConstant.Workflow.NODE_TYPE_NOT_FOUND);
     }
 
-    protected JSONObject init() {
-        String url = "https://api.seniverse.com/v3/weather/now.json?key={key}&location={location}";
-        Map<String, String> map = new HashMap<>();
-        map.put("key", "auvelrhcvsizxt9k");
-        map.put("location", "beijing");
-        String method = "get";
-        return apiClent.getJson(url, map, method);
-    }
+//    protected JSONObject init() {
+//        String url = "https://api.seniverse.com/v3/weather/now.json?key={key}&location={location}";
+//        Map<String, String> map = new HashMap<>();
+//        map.put("key", "auvelrhcvsizxt9k");
+//        map.put("location", "beijing");
+//        String method = "get";
+//        return apiClent.getJson(url, map, method);
+//    }
 
     protected List<Node> getRoots(Workflow wf) {
         List<Node> nodes = wf.getNodes();
@@ -97,7 +97,6 @@ public class DefaultWorkflowProcessor implements WorkflowProcessor {
         roots.forEach(e -> {
             NodeProcessorDTO nodeProcessorDTO = new NodeProcessorDTO()
                     .setNode(e)
-                    .setData(init())
                     .setStatus(true)
                     .setUserInfo(userInfo);
             nodeProcessorDTOMap.put(e.get_id(), nodeProcessorDTO);

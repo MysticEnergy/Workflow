@@ -17,6 +17,8 @@ public interface ExceptionKeyConstant {
 
         public static final String ROOT_NODE_NOT_FOUND = "root.node.not.found";
 
+        public static final String DY_CODE_ERROR = "dy.code.error";
+
     }
 
 }

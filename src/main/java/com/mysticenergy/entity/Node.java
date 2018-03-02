@@ -32,6 +32,7 @@ public class Node implements Serializable {
     /**
      * 节点代码
      * 对应不同的类型拥有不同的代码
+     * 对于info节点，为从api获取json串
      * 对于normal节点，为java代码段
      * 对于logic节点，为ENUM，eg: AND,OR
      * 对于notify节点，为ENUM，eg：telegram

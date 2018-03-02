@@ -1,6 +1,7 @@
 package com.mysticenergy.wfprocessor.nodeprocessor.impl;
 
 import com.mysticenergy.command.CommandHelper;
+import com.mysticenergy.common.exception.ExceptionKeyConstant;
 import com.mysticenergy.common.exception.WfBaseException;
 import com.mysticenergy.constant.NodeType;
 import com.mysticenergy.wfprocessor.model.NodeProcessorDTO;
@@ -40,7 +41,7 @@ public class NormalNodeProcessor implements NodeProcessor {
 //                logger.debug("执行结果:{}", result);
 //            }
         } catch (Exception e) {
-            throw new WfBaseException("key", e);
+            throw new WfBaseException(ExceptionKeyConstant.Workflow.DY_CODE_ERROR, e);
         }
 
         return nodeProcessorDTO.setStatus(true);

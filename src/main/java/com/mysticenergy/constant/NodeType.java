@@ -10,7 +10,8 @@ package com.mysticenergy.constant;
 public enum NodeType {
     NORMAL("normal"),
     LOGIC("logic"),
-    NOTIFY("notify");
+    NOTIFY("notify"),
+    INFO("info");
 
     String name;
 
