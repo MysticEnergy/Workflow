@@ -1,5 +1,7 @@
 package com.mysticenergy.wfprocessor.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.mysticenergy.common.BaseTest;
 import com.mysticenergy.constant.NodeType;
 import com.mysticenergy.entity.Node;
@@ -26,6 +28,9 @@ public class DefaultWorkflowProcessorTest extends BaseTest {
 
     @Test
     public void execute() throws Exception {
+        JSONObject object = new JSONObject();
+        object.getString("");
+        object.getString("");
         workflowProcessor.execute(new WorkflowProcessorDTO()
                 .setWorkflow(
                         new Workflow()
@@ -34,7 +39,12 @@ public class DefaultWorkflowProcessorTest extends BaseTest {
                                 .setNodes(Arrays.asList(
                                         new Node().set_id("1")
                                                 .setType(NodeType.NORMAL.getName())
-                                                .setCode("System.out.println(\"hello world\");")
+                                                .setCode("        JSONArray array = data.getJSONArray(\"results\");\n" +
+                                                        "        JSONObject ret = (JSONObject) array.get(0);\n" +
+                                                        "        JSONObject o = new JSONObject();\n" +
+                                                        "        o.put(\"位置\",ret.getJSONObject(\"location\").getString(\"name\"));\n" +
+                                                        "        o.put(\"天气\",ret.getJSONObject(\"now\").getString(\"text\"));" +
+                                                        "        return o;")
                                                 .setNodeName("node1")
                                                 .setPreNum(0)
                                                 .setRelations(

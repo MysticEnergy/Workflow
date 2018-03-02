@@ -34,7 +34,7 @@ public class NormalNodeProcessor implements NodeProcessor {
     public NodeProcessorDTO execute(NodeProcessorDTO nodeProcessorDTO) {
         try {
             commandHelper.compile(nodeProcessorDTO);
-            commandHelper.run(nodeProcessorDTO);
+            nodeProcessorDTO = commandHelper.runForDTO(nodeProcessorDTO);
 
 //            if (logger.isDebugEnabled()) {
 //                logger.debug("执行结果:{}", result);

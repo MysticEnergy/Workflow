@@ -54,21 +54,13 @@ public class DefaultWorkflowProcessor implements WorkflowProcessor {
         return apiClent.getJson(url, map, method);
     }
 
-    protected Node getRoot(Workflow wf) {
-        Node root = null;
-
+    protected List<Node> getRoots(Workflow wf) {
         List<Node> nodes = wf.getNodes();
-        for (Node node : nodes) {
-            if (node.getPreNum() == 0) {
-                root = node;
-                break;
-            }
+        List<Node> roots = nodes.stream().filter(e -> Objects.equals(e.getPreNum(), 0)).collect(Collectors.toList());
+        if (Objects.isNull(roots)) {
+            throw new WfBaseException(ExceptionKeyConstant.Workflow.ROOT_NODE_NOT_FOUND);
         }
-        if (root == null) {
-            throw new RuntimeException("该流程无根节点");
-        }
-
-        return root;
+        return roots;
     }
 
     protected List<Node> getTos(Node current, boolean status, List<Node> nodeList) {
@@ -98,19 +90,19 @@ public class DefaultWorkflowProcessor implements WorkflowProcessor {
     public void execute(WorkflowProcessorDTO workflowProcessorDTO) {
         UserInfo userInfo = workflowProcessorDTO.getUserInfo();
         List<Node> nodeList = workflowProcessorDTO.getWorkflow().getNodes();
-
         Map<String, NodeProcessorDTO> nodeProcessorDTOMap = new HashMap<>();
-
-        Node root = getRoot(workflowProcessorDTO.getWorkflow());
-        NodeProcessorDTO nodeProcessorDTO = new NodeProcessorDTO()
-                .setNode(root)
-                .setData(init())
-                .setStatus(true)
-                .setUserInfo(userInfo);
-        nodeProcessorDTOMap.put(root.get_id(), nodeProcessorDTO);
-
         Queue<Node> taskQueue = new ConcurrentLinkedQueue<>();
-        taskQueue.add(root);
+
+        List<Node> roots = getRoots(workflowProcessorDTO.getWorkflow());
+        roots.forEach(e -> {
+            NodeProcessorDTO nodeProcessorDTO = new NodeProcessorDTO()
+                    .setNode(e)
+                    .setData(init())
+                    .setStatus(true)
+                    .setUserInfo(userInfo);
+            nodeProcessorDTOMap.put(e.get_id(), nodeProcessorDTO);
+            taskQueue.add(e);
+        });
 
         while (!taskQueue.isEmpty()) {
 
